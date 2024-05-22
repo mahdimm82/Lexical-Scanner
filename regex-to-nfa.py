@@ -89,6 +89,10 @@ def compile(pofix):
             initial = state()
             initial.label = c
             initial.edge1 = accept
+            if len(nfaStack) > 1:
+                nfa2, nfa1 = nfaStack.pop(), nfaStack.pop()
+                nfa1.accept.edge1 = nfa2.initial
+                nfaStack.append(nfa(nfa1.initial, nfa2.accept))
             nfaStack.append(nfa(initial, accept))
 
     # at this point, nfastack should have a single nfa on it
@@ -139,8 +143,6 @@ alphabet_size = int(input())
 alphabet_input = input()
 regex = input()
 testcase = input()
-
-for i in range(i, len(regex)):
     
 
 print(match(regex, testcase), regex, testcase)
