@@ -29,6 +29,7 @@ int get_index(string arr[1000], int size, string s)
         if(s == arr[i])
             return i;
     }
+    return -1;
 }
 
 void split (string str, char seperator, string strings[1000])  
@@ -150,12 +151,27 @@ int main()
         }
     }
 
+    int final_result = states_size;
+
+
     for(int i = 0; i < states_size; i++)
     {
         for(int j = i+1; j < states_size; j++)
         {
-            cout << table[i][j] << " ";
+            // cout << table[i][j] << " ";
+            if(table[i][j] == 1)
+            {
+                final_result--;
+                if(table[j][i] == 1)
+                {
+                    table[j][i] = 0;
+                }
+            }
         }
-        cout << endl;
+        // cout << endl;
     }
+
+    cout << final_result << " ";    
+
+    return 52;
 }

@@ -143,6 +143,36 @@ alphabet_size = int(input())
 alphabet_input = input()
 regex = input()
 testcase = input()
-    
 
-print(match(regex, testcase), regex, testcase)
+spc = ['*', '|', '(', ')']
+mod_regex = ""
+
+for i in range(len(regex)-1):
+    mod_regex += regex[i]
+
+    if regex[i] not in spc:
+        if regex[i+1] not in spc:
+            mod_regex += '.'
+
+        elif regex[i+1] == '(':
+            mod_regex += '.' 
+
+    
+    elif regex[i] == '*':
+        if regex[i+1] not in spc:
+            mod_regex += '.'
+
+        elif regex[i+1] == '(':
+            mod_regex += '.' 
+
+    
+    elif regex[i] == ')':
+        if regex[i+1] not in spc:
+            mod_regex += '.'
+
+        elif regex[i+1] == '(':
+            mod_regex += '.' 
+
+mod_regex += regex[-1]
+#print(mod_regex)
+print(match(mod_regex, testcase), mod_regex, testcase)

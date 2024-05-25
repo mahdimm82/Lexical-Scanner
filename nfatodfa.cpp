@@ -95,7 +95,7 @@ int main()
         }
     }
 
-    //hande epsilons
+    //handle epsilons
     for(int i = 0; i <= ind; i++)
     {
         if(res[i][alphabet_size+1] != "")
